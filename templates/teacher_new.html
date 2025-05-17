@@ -1,0 +1,38 @@
+{%  extends "base.html" %}
+{%  block title %} Myschool - New teacher Form {%  endblock title %}
+{%  block content %}
+<h5 class="h5">NEW teacher</h5>
+
+<form method="POST" action="">
+
+{{ form.hidden_tag() }}
+<div class="mb-3">
+{{ form.fullname.label(class="form-label") }}
+{{ form.fullname(form=control) }}
+</div>
+
+<div class="mb-3">
+{{ form.tel.label(class="form-label") }}
+{{ form.tel(form=control) }}
+</div>
+
+<div class="mb-3">
+{{ form.email.label(class="form-label") }}
+{{ form.email(form=control)}}
+</div>
+
+<div class="mb-3">
+{{ form.experience.label(class="form-label") }}
+{{ form.experience(form=control)}}
+</div>
+
+<div class="mb-3">
+{{ form.subject.label(class="form-label") }}
+{{ form.subject(form=control)}}
+</div>
+
+
+{{ form.btn_submit(class="btn btn-primary") }}
+</form>
+
+{%  endblock content %}

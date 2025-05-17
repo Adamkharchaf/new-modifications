@@ -1,5 +1,5 @@
-from flask import Flask, render_template
-from forms import StudentForm
+from flask import Flask, render_template,request,redirect,url_for
+from forms import StudentForm,TeacherForm
 from peewee import *
 from datetime import datetime
 # create flask app
@@ -17,9 +17,27 @@ class Student(db.Model):
 
     class Meta : 
         database = db
+
+
+class Teacher(db.Model):
+    fullname= CharField()
+    tel=CharField()
+    email= CharField(unique=True)
+    experience= IntegerField()
+    subject= CharField
+    joining_date= DateTimeField(default=datetime.now, formats='%Y-%m-%d %H-%M-%S')
+
+    class Meta :
+        database = db
+
+
+
+
+
+
 def initialize_database():
     db.connect()
-    db.create_tables([Student])
+    db.create_tables([Student,Teacher])
     db.close()
 
 with app.app_context():
@@ -48,7 +66,28 @@ def add_student():
 
 
 
+#creating the teacher route
+@app.route("/teachers")
+def teachers_list():
+    return render_template('teacher.html')
 
+@app.route("/teacher/new",methods=['POST','GET'])
+def add_teacher():
+    form = TeacherForm()
+    if request.method =='POST'and form.validate_on_submit():
+       #2)insert new teacher into database
+        
+        Teacher.create(
+           fullname = form.fullname.data,
+           tel = form.tel.data,
+           email = form.email.data,
+           experience = form.experience.data,
+           subject = form.subject.data
+        )
+
+        return redirect(url_for('teachers_list'))
+
+    return render_template('teacher_new.html',form=form)
 
 
 if __name__ == '__main__':
