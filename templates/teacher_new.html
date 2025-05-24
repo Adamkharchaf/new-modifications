@@ -3,32 +3,32 @@
 {%  block content %}
 <h5 class="h5">NEW teacher</h5>
 
-<form method="POST" action="">
+<form method="POST">
 
 {{ form.hidden_tag() }}
 <div class="mb-3">
 {{ form.fullname.label(class="form-label") }}
-{{ form.fullname(form=control) }}
+{{ form.fullname(class="form-control") }}
 </div>
 
 <div class="mb-3">
 {{ form.tel.label(class="form-label") }}
-{{ form.tel(form=control) }}
+{{ form.tel(class="form-control") }}
 </div>
 
 <div class="mb-3">
 {{ form.email.label(class="form-label") }}
-{{ form.email(form=control)}}
+{{ form.email(class="form-control")}}
 </div>
 
 <div class="mb-3">
 {{ form.experience.label(class="form-label") }}
-{{ form.experience(form=control)}}
+{{ form.experience(class="form-control")}}
 </div>
 
 <div class="mb-3">
 {{ form.subject.label(class="form-label") }}
-{{ form.subject(form=control)}}
+{{ form.subject(class="form-control")}}
 </div>
 
 

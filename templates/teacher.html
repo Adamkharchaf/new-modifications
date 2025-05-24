@@ -15,29 +15,25 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Full name</th>
+        <th scope="col">Tel</th>
         <th scope="col">Email</th>
+        <th scope="col">experience</th>
+        <th scope="col">Subject</th>
         <th scope="col">Date joined</th>
       </tr>
     </thead>
     <tbody>
+    {% for prof in teachers %}
       <tr>
-        <th scope="row">1</th>
-        <td>Otto Mark</td>
-        <td>mark@gmail.com</td>
-        <td>30/02/2024</td>
+       <td>{{ prof.id }}</td>
+       <td>{{ prof.fullname }}</td>
+       <td>{{ prof.tel }}</td>
+       <td>{{ prof.email }}</td>
+       <td>{{ prof.experience }}</td>
+       <td>{{ prof.subject }}</td>
+       <td>{{ prof.joining_date }}</td>
       </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Ahmed Thornton</td>
-        <td>Thornton@gmail.com</td>
-        <td>12/01/2025</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>John Doe</td>
-        <td>Doe@yahoo.fr</td>
-        <td>13/05/2023</td>
-      </tr>
+    {% endfor %}
     </tbody>
   </table>
 <p class="text-muted">55 row found</p>

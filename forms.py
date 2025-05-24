@@ -17,7 +17,7 @@ class TeacherForm(FlaskForm):
     fullname = StringField('Teacher fullname', validators=[DataRequired()])
     tel=StringField(' Teacher phone number',validators=[DataRequired()])
     email=EmailField(' Teacher Email',validators=[DataRequired(),Email()])
-    
-    btn_submit=SubmitField('Add Teacher')
     experience= IntegerField('Teacher experience years', validators=[DataRequired()])
     subject= StringField('Subject', validators=[DataRequired()])
+    btn_submit=SubmitField('Add Teacher')
+

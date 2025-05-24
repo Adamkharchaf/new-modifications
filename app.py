@@ -24,7 +24,7 @@ class Teacher(db.Model):
     tel=CharField()
     email= CharField(unique=True)
     experience= IntegerField()
-    subject= CharField
+    subject= CharField()
     joining_date= DateTimeField(default=datetime.now, formats='%Y-%m-%d %H-%M-%S')
 
     class Meta :
@@ -69,12 +69,13 @@ def add_student():
 #creating the teacher route
 @app.route("/teachers")
 def teachers_list():
-    return render_template('teacher.html')
+    query = Teacher.select()
+    return render_template('teacher.html',teachers = query)
 
 @app.route("/teacher/new",methods=['POST','GET'])
 def add_teacher():
     form = TeacherForm()
-    if request.method =='POST'and form.validate_on_submit():
+    if request.method == 'POST' and form.validate_on_submit():
        #2)insert new teacher into database
         
         Teacher.create(
@@ -82,9 +83,8 @@ def add_teacher():
            tel = form.tel.data,
            email = form.email.data,
            experience = form.experience.data,
-           subject = form.subject.data
+           subject = form.subject.data,
         )
-
         return redirect(url_for('teachers_list'))
 
     return render_template('teacher_new.html',form=form)
